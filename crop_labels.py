@@ -1,13 +1,15 @@
 from PIL import Image
+import cv2
+import pybboxes as pbx
+import numpy as np
+
+# Part of python
 from tkinter import messagebox
 from tkinter import filedialog
-import cv2
 import math
 import os
 import shutil
 import random
-import pybboxes as pbx
-import numpy as np
 
 
 

@@ -1,5 +1,5 @@
 # ICVT modules
-from modules.utility.utils import yolobbox2bbox
+from ..utility.utils import yolobbox2bbox
 
 # Extra modules
 import cv2
