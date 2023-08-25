@@ -1,5 +1,5 @@
 # ICVT modules
-from ..utility.utils import yolobbox2bbox
+from ..utility import utils
 
 # Extra modules
 import cv2
@@ -695,7 +695,7 @@ class ImageViewer(QMainWindow):
         if self.use_label_files and hasattr(self, 'label_parameters_list') and not self.label_parameters_list == []:
             for i, label in enumerate(self.label_parameters_list):
                 coords = np.array([float(coord) for coord in label[1:]]).reshape(-1, 4)
-                bbox_coords = yolobbox2bbox(coords)
+                bbox_coords = utils.yolobbox2bbox(coords)
 
                 # Draw rectangles on the image using the bounding box coordinates
                 for box in bbox_coords:
