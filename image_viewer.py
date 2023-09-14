@@ -7,7 +7,7 @@ import numpy as np
 import pybboxes as pbx
 import PyQt5 as pyqt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsView, QGraphicsScene, QVBoxLayout, QHBoxLayout, QPushButton, QWidget, QLabel, QComboBox, QRubberBand, QFrame
-from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtGui import QPixmap, QImage, QIcon
 from PyQt5.QtWidgets import QGraphicsItem, QDesktopWidget
 from PyQt5.QtCore import Qt, QRectF  # Import QRectF here
 from PyQt5.QtGui import QFont, QFontMetrics
@@ -17,6 +17,7 @@ from PyQt5.QtGui import QPalette, QColor, QBrush, QCursor
 import shutil
 import os
 from functools import partial
+import sys
 
 class ThumbnailItem(QGraphicsItem):
     def __init__(self, pixmap, index, is_current, is_previous, status, viewer):
@@ -138,6 +139,7 @@ class ImageViewer(QMainWindow):
         self.selected_thumbnail_index = 0
 
         # initialize the GUI
+        self.setWindowIcon(QIcon(self.resource_path("resources/img/iclv_ico.png")))
         self.init_ui()
 
     def find_labels_directory(self, folder_path):
@@ -792,6 +794,14 @@ class ImageViewer(QMainWindow):
 
         # Load and display the thumbnails for the previous image
         self.load_thumbnails()
+
+    def resource_path(self, relative_path):
+        try:
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+
+        return os.path.join(base_path, relative_path)
 
     def thumbnail_clicked(self, index):
 
